@@ -37,8 +37,8 @@ type ID int64
 // from the timestamp, instance, and sequence arguments, respectively.
 func New(timestamp uint64, instance, sequence uint16) ID {
 	return ID((timestamp & (1<<timestampBits - 1) << (instanceBits + sequenceBits)) |
-		uint64(instance&(1<<instanceBits-1)<<sequenceBits) |
-		uint64(sequence&(1<<sequenceBits-1)))
+		(uint64(instance) & (1<<instanceBits - 1) << sequenceBits) |
+		(uint64(sequence) & (1<<sequenceBits - 1)))
 }
 
 // Timestamp returns the 41-bit timestamp value of the ID.
@@ -68,16 +68,15 @@ type Generator struct {
 // NewGenerator returns a new generator
 // that uses the given epoch and instance ID.
 func NewGenerator(epoch time.Time, instance uint16) *Generator {
-	return &Generator{
-		epoch:    uint64(epoch.UnixMilli()),
-		instance: instance,
-	}
+	gen := new(Generator)
+	gen.Init(epoch, instance)
+	return gen
 }
 
 // Init sets the generator's epoch and instance ID,
 // and resets the generator's sequence number to zero.
 func (gen *Generator) Init(epoch time.Time, instance uint16) {
-	gen.epoch = uint64(epoch.UnixMilli())
+	gen.epoch = uint64(unixMilli(epoch))
 	gen.instance = instance
 	gen.seq = 0
 }
@@ -88,7 +87,7 @@ func (gen *Generator) Generate() ID {
 	seq := gen.seq
 	gen.seq = (gen.seq + 1) & (1<<sequenceBits - 1)
 	return New(
-		uint64(time.Now().UnixMilli())-gen.epoch,
+		uint64(unixMilli(time.Now()))-gen.epoch,
 		gen.instance,
 		seq,
 	)
