@@ -19,15 +19,9 @@ go get zombiezen.com/go/discord
 We'd love to accept your patches and contributions to this project.
 See [CONTRIBUTING.md](CONTRIBUTING.md) for more details.
 
-If you find this package useful, consider [sponsoring @zombiezen][],
-the author and maintainer.
-
-[sponsoring @zombiezen]: https://github.com/sponsors/zombiezen
-
 ## Links
 
 - [Discord Developer Documentation](https://discord.com/developers/docs/intro)
-- [Sponsor](https://github.com/sponsors/zombiezen)
 
 ## License
 
