@@ -14,6 +14,27 @@ It differs from [DiscordGo][] by providing a [`Context`][]-aware API.
 go get zombiezen.com/go/discord
 ```
 
+## Basic Usage
+
+```go
+auth := discord.BotAuthorization("xyzzy")
+client := discord.NewClient(auth, nil)
+dmChannel, err := client.CreateDM(ctx, userID)
+if err != nil {
+  return err
+}
+_, err = client.CreateMessage(ctx, &discord.CreateMessageParams{
+  ChannelID: dmChannel.ID,
+  Content:   "Hello, World!",
+})
+if err != nil {
+  return err
+}
+```
+
+See pkg.go.dev for
+[more examples](https://pkg.go.dev/zombiezen.com/go/discord#pkg-examples).
+
 ## Contributing
 
 We'd love to accept your patches and contributions to this project.
