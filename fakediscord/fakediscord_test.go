@@ -32,10 +32,11 @@ func startServer(tb testing.TB) (*Server, *discord.ClientOptions) {
 	tb.Helper()
 	srv := new(Server)
 	srv.SetLogger(testlog.Logger{})
-	hsrv := httptest.NewServer(srv)
+	hsrv := httptest.NewUnstartedServer(srv)
 	hsrv.Config.BaseContext = func(l net.Listener) context.Context {
 		return testlog.WithTB(context.Background(), tb)
 	}
+	hsrv.Start()
 	tb.Cleanup(hsrv.Close)
 	baseURL, err := url.Parse(hsrv.URL + "/api/v9")
 	if err != nil {
