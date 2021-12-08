@@ -24,3 +24,11 @@ We use GitHub pull requests for this purpose.
 Consult
 [GitHub Help](https://help.github.com/articles/about-pull-requests/)
 for more information on using pull requests.
+
+Code contributions should follow the recommendations in
+[Effective Go](https://go.dev/doc/effective_go)
+as well as
+[Go Code Review Comments](https://github.com/golang/go/wiki/CodeReviewComments).
+In addition, this project uses
+[Semantic Line Breaks](https://sembr.org/)
+in documentation.
