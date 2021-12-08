@@ -21,7 +21,7 @@ import (
 	"time"
 )
 
-var discordEpoch = time.UnixMilli(1420070400000)
+var discordEpoch = time.Unix(1420070400, 0)
 
 func TestID(t *testing.T) {
 	tests := []struct {

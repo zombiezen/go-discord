@@ -38,7 +38,7 @@ import (
 	"zombiezen.com/go/log"
 )
 
-var discordEpoch = time.UnixMilli(1420070400000)
+var discordEpoch = time.Unix(1420070400, 0)
 
 // HTTP headers
 const (
