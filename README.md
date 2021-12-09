@@ -43,6 +43,7 @@ See [CONTRIBUTING.md](CONTRIBUTING.md) for more details.
 ## Links
 
 - [Discord Developer Documentation](https://discord.com/developers/docs/intro)
+- [Release Notes](https://github.com/zombiezen/go-discord/blob/main/CHANGELOG.md)
 
 ## License
 
